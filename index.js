@@ -1,7 +1,5 @@
 // SPOTIFY SEARCH FUNCTIONS
-const client_ID = 'badf019474334b82a55c72dbb75f3739'
-const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
-const token = 'BQBP_sGIBcl5vYKTWx8qzHbjpL3ozm2H9YFCA0XckmFCXRR9MSJhnDjXwnOPiUMF4b0z85VW-qyTVokSDMI2wknhmfdUl091a_4HIVf1gN-Ii4uGWWUoLw8O7xIkwVOKXf_tfGPqnaZzegNg6NBiYic2lu304hq4F2c70dCYCbR_n-O4rF3pWYwNd9UCV56S_58bV2-xdNC_6i9TLCGEOVPtOJ8MqcBVaX_aAtSZPS8C6wMj-2CMr35WTBm-Xtod-shQwBhvhntg2hoqEtQSqaM'
+
 
 function searchSpotify(search) {
     fetch(`https://api.spotify.com/v1/search?q=${search}&type=track&limit=10`, {
