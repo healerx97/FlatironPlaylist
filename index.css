@@ -81,9 +81,26 @@ form{
     height: 50px;
     width: 50px;
 }
+.center_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .center_add{
     float: left;
 }
 .center_del{
     float: right;
+}
+.center_track{
+    text-align: center;
+}
+.center_artist{
+    text-align: center;
+}
+.center_album{
+    text-align: center;
+}
+.center_duration{
+    text-align: center;
 }
