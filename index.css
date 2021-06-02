@@ -1,0 +1,32 @@
+.search_result_div {
+    float: left;
+    width: 33.33%;
+}
+.playlist_div {
+    margin:auto;
+    float: right;
+    width: 33.33%;
+    border-style: solid;
+    border-color: red;
+}
+.center {
+    align-items: center;
+    width: 33.33%;
+    border-style: solid;
+    border-color: blue;
+}
+.search_bar {
+    margin:auto;
+    width: 50%;
+    border-style: solid;
+    border-color:purple;
+
+}
+form{
+    margin: auto;
+    width: 50%;
+}
+.preview_song{
+    border-style: solid;
+    border-color: pink;
+}
