@@ -30,3 +30,16 @@ form{
     border-style: solid;
     border-color: pink;
 }
+
+.return_search{
+    display:grid
+}
+.artwork{
+    grid-column-start: 1;
+}
+.contain_name_and_artist{
+    grid-column-start: 2;
+}
+.album_name{
+    grid-column-start: 4;
+}
