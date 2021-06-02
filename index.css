@@ -44,30 +44,46 @@ form{
     grid-column-start: 1;
 }
 .contain_name_and_artist{
+    border-style: dashed;
     grid-column-start: 2;
-    grid-column-end: 4;
+    grid-column-end: 3;
     overflow: hidden;
 }
 .album_name{
-    grid-column-start: 4;
-    white-space: nowrap;
+    text-align: left;
+    grid-column-start: 3;
+    white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .duration{
-    grid-column-start: 5;
+    grid-column-start: 4;
 }
 .track_name{
-    white-space: nowrap;
+    text-align: left;
+    font-size: 16px;
+    white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .track_artist{
-    white-space: nowrap;
+    text-align: left;
+    font-size: 12px;
+    white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+.delete_from_playlist{
+    grid-column-start: 6;
+    padding: 2px;
 }
 .mini-album-cover {
     height: 50px;
     width: 50px;
+}
+.center_add{
+    float: left;
+}
+.center_del{
+    float: right;
 }
