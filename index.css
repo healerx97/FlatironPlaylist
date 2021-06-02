@@ -46,10 +46,11 @@ form{
 .contain_name_and_artist{
     grid-column-start: 2;
     grid-column-end: 4;
+    overflow: hidden;
 }
 .album_name{
     grid-column-start: 4;
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -57,12 +58,12 @@ form{
     grid-column-start: 5;
 }
 .track_name{
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .track_artist{
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }

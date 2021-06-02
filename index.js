@@ -1,5 +1,7 @@
 // SPOTIFY SEARCH FUNCTIONS
-
+const client_ID = 'badf019474334b82a55c72dbb75f3739'
+const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
+const token = 'BQCQP4ScuCfNBkl8og3tpk7OzqneFoAA_ikz8hdoSB-qWZcF4PyLxX8y21npuvUpmhdgw0dB1CjUQveGSWDD1mHcrs1U7XICzlrf1DHeBzATpKgAX3V4zqs7wuDlGWvzorOEVRuX4KL6l8EbH5yiW_YQ7FKHUb9wN66TUPYPoDVayYIt2AeAvoxR6fAkqLQC_BD42_8KmpbqE4KzFVJDQf5_9yj2KcqgYLz4glGT_5WzNyL8VaqRfuuPptSt-mcwrSgT0AtBs_rIlDF3wol8qV8'
 
 document.addEventListener('DOMContentLoaded', initiate)
 
@@ -23,10 +25,17 @@ function searchSpotify(e) {
     .then(res=>res.json())
     .then(data=> {
         let trackList = data.tracks.items
-        console.log(trackList[0])
-        let grid = document.querySelector('.return_search')
+        let grid = document.querySelector('.search_result_div')
         //resetting ul everytime search is clicked
-        grid.innerHTML = ""
+        grid.innerHTML = `<div class="return_search">
+                            <div class="artwork">album artwork</div>
+                            <div class="contain_name_and_artist">
+                                <div class="track_name">Track Name</div>
+                                <div class="track_artist">Track artist</div>
+                            </div>
+                            <div class="album_name">Album name</div>
+                            <div class="duration">Duration</div>
+                        </div>`
 
         //function for rendering 1 search result
         function renderSearch(resultTrack) {
@@ -39,6 +48,7 @@ function searchSpotify(e) {
             let albumImageURL = resultTrack.album.images[0].url
             let trackDuration = resultTrack['duration_ms']
 
+            let searchRow = document.createElement('div')
             let artworkCell = document.createElement('div')
             let titleArtistCell = document.createElement('div')
             let albumNameCell = document.createElement('div')
@@ -65,8 +75,29 @@ function searchSpotify(e) {
             //duration
             durationCell.className = "duration"
             durationCell.textContent = trackDuration
-            grid.append(artworkCell,titleArtistCell,albumNameCell,durationCell)
+            searchRow.className = "return_search"
+            searchRow.append(artworkCell,titleArtistCell,albumNameCell,durationCell)
+            searchRow.dataset.img = albumImageURL
+            searchRow.dataset.title = trackName
+            searchRow.dataset.artist = artists
+            searchRow.dataset.album = albumName
+            searchRow.dataset.dur = trackDuration
+            searchRow.addEventListener('click', showTrack)
+            grid.append(searchRow)
 
+            //creating click function for each track
+            function showTrack(e) {
+                let centerImage = document.querySelector('.center_img')
+                let centerTitle = document.querySelector('.center_track')
+                let centerArtist = document.querySelector('.center_artist')
+                let centerAlbum = document.querySelector('.center_album')
+                let centerDuration = document.querySelector('.center_duration')
+                centerImage.src = albumImageURL
+                centerTitle.textContent = trackName
+                centerArtist.textContent = artists
+                centerAlbum.textContent = albumName
+                centerDuration.textContent = trackDuration
+            }
 
 
         }
@@ -74,10 +105,8 @@ function searchSpotify(e) {
         trackList.forEach(track => {
             renderSearch(track)
             
-            //creating click function for each track
-            function showTrack() {
-                
-            }
+            
+
             //creating add-to-playlist function for each track
             function addToPlaylist() {
 
