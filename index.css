@@ -1,6 +1,5 @@
 body{
     background-color: dimgray;
-    font-family: -webkit-pictograph;
 }
 .search_bar {
     margin:auto;
@@ -118,7 +117,6 @@ form{
     border-radius: 5px;
     padding: 2px;
     height: 40px;
-    font-family: -webkit-pictograph;
 
 }
 .center_del{
