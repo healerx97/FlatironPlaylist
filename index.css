@@ -2,10 +2,10 @@ body{
     background-color: dimgray;
     font-family: sans-serif;
 }
+
 .search_bar {
     margin:auto;
     width: 100%;
-
 }
 #search_input{
     background-color: #ffffff59;
@@ -134,7 +134,6 @@ form{
     border-radius: 5px;
     padding: 2px;
     height: 40px;
-    font-family: -webkit-pictograph;
 
 }
 .center_del{
