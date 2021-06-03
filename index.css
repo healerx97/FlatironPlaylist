@@ -4,9 +4,7 @@ body{
 }
 .search_bar {
     margin:auto;
-    width: 50%;
-    border-style: solid;
-    border-color:purple;
+    width: 75%;
 
 }
 #search_input{
@@ -21,7 +19,6 @@ body{
 }
 form{
     margin: auto;
-    width: 50%;
 }
 .center {
     float:left;
@@ -36,6 +33,7 @@ form{
     width: 25%;
     border-style: solid;
     border-color: yellow;
+    overflow: hidden;
 }
 .playlist_div {
     float: left;
@@ -58,12 +56,12 @@ form{
 
 .right_playlist{
     display:grid;
+    grid-template-columns: 13% 39% 35% 13%;
 }
 .artwork{
     grid-column-start: 1;
 }
 .contain_name_and_artist{
-    border-style: dashed;
     grid-column-start: 2;
     grid-column-end: 3;
     overflow: hidden;
@@ -136,13 +134,21 @@ form{
 }
 .center_track{
     text-align: center;
+    line-height: 0px;
 }
 .center_artist{
     text-align: center;
+    line-height: 0px;
 }
 .center_album{
     text-align: center;
+    line-height: 0px;
 }
 .center_duration{
     text-align: center;
+    line-height: 0px;
+}
+#playlist_title{
+    text-align: center;
+    line-height: 2px;
 }
