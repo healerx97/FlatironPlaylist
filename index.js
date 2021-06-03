@@ -1,7 +1,7 @@
 // SPOTIFY SEARCH FUNCTIONS
 const client_ID = 'badf019474334b82a55c72dbb75f3739'
 const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
-const token = 'BQBQXoT6dw6wfBJUgdW0s4CUUxSQPdfng3XkdNo_DSixGG0i2xpZ8BesRkSMz6LcqVrnQbYlsIyHRcaVdLhm4Dtb7xEZRwsAAzFzkUW4bMRs62EEgKrIPVwLnnThMPjJIQLsdiSeUpducH9Nhv0nTWy7ylACVlVG9zUB_vwgscOtedRRb1d3UMhD-bVGfmR09JWk5dvEeTXhyGTIPfUC8TNa-QTYb2943YqXmCiTMQ9fg92ZsA4mWZpSvN43rXQhCeHh9Bfdpn3HvFrr4Hhcke8'
+const token = 'BQAV_nEAdJ_E4b8QcA8Wu03HW1JmTmL_TbTp_jXuQMKskF2gEj9BK2MUmnjK4Bl0eQG-HgRSroRZ-qwkcG2Hr_xLL2qnSWT5LKhpxQr-8bYxqst7vVLk3maQhXYcB_UK_O4KqFkB8Ksf52UZWV_kQfcLfXD2E3f7zsQzyH-y31UvdMtaFknqOTxDcbkIQspcMbbQ75S7o1V7srDksb3uUH3vA0d6FtaEFhcByJrv0qfiKHYnpgcYFk8RbT-9MuvhatZqEHY8t7UKYH-kPjIKyQA'
 
 document.addEventListener('DOMContentLoaded', initiate)
 
@@ -28,15 +28,17 @@ function searchSpotify(e) {
         let grid = document.querySelector('.search_result_div')
         let rightGrid = document.querySelector('.playlist_div')
         //resetting ul everytime search is clicked
-        grid.innerHTML = `<div class="return_search">
-                            <div class="artwork">album artwork</div>
-                            <div class="contain_name_and_artist">
-                                <div class="track_name">Track Name</div>
-                                <div class="track_artist">Track artist</div>
-                            </div>
-                            <div class="album_name">Album name</div>
-                            <div class="duration">Duration</div>
-                        </div>`
+        grid.innerHTML = `
+                        <div class="search_bar">
+                            <form class="searchForm">
+                                <div>
+                                    <input type="search" id="search_input">
+                                    <button class="search_btn">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        `
 
         //function for rendering 1 search result
         function renderSearch(resultTrack) {
@@ -128,6 +130,8 @@ function searchSpotify(e) {
                     .then(res=>res.json())
                     .then(data=> {
                         renderPlaylist()
+                        centerAdd.disabled = true;
+                        centerDel.disabled = false;
                     })
                     .catch(error=> console.log(error))
                     
@@ -142,16 +146,7 @@ function searchSpotify(e) {
         .then(res=> res.json())
         .then(tracks=> {
             document.querySelector('.playlist_div').innerHTML = `
-                <div class="right_playlist">
-                <div class="artwork">
-                    <img class="mini-album-cover" src="https://files.radio.co/humorous-skink/staging/default-artwork.png">
-                </div>
-                <div class="contain_name_and_artist">
-                    <div class="track_name">Track Name</div>
-                    <div class="track_artist">Track artist</div>
-                </div>
-                <div class="album_name">Album name</div>
-                <div class="duration">Duration</div>`
+                <h3 id="playlist_title">Our Playlist</h3>`
             tracks.forEach(playlistTrack=>{
                 let playlistRow = document.createElement('div')
                 let artworkCell = document.createElement('div')
@@ -179,6 +174,7 @@ function searchSpotify(e) {
                 //duration
                 durationCell.className = "duration"
                 durationCell.textContent = playlistTrack.Duration
+                playlistRow.className = "right_playlist"
                 playlistRow.id = playlistTrack.id
                 playlistRow.append(artworkCell,titleArtistCell,albumNameCell,durationCell)
                 playlistRow.addEventListener('click', showTrackPlaylist)
@@ -205,7 +201,7 @@ function searchSpotify(e) {
                     centerAlbum.textContent = playlistTrack.Album
                     centerDuration.textContent = playlistTrack.Duration
 
-                    centerDel.className = "center_Del"
+                    centerDel.className = "center_del"
                     centerDel.textContent = "DEL"
                     centerDel.addEventListener('click', ()=>{
                         fetch(`http://localhost:3000/playlist/${playlistTrack.id}`, {
@@ -217,6 +213,8 @@ function searchSpotify(e) {
                         .then(res=> res.json())
                         .then(data => {
                             renderPlaylist()
+                            centerAdd.disabled = false;
+                            centerDel.disabled = true;
                         })
                     })
                     document.querySelector('.center').append(centerDel)
@@ -227,14 +225,6 @@ function searchSpotify(e) {
         //displays all search results
         trackList.forEach(track => {
             renderSearch(track)
-            //creating add-to-playlist function for each track
-            function addToPlaylist() {
-
-            }
-
-
-
-
         })
         
     })
