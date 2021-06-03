@@ -1,7 +1,7 @@
 // SPOTIFY SEARCH FUNCTIONS
 const client_ID = 'badf019474334b82a55c72dbb75f3739'
 const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
-const token = 'BQCQP4ScuCfNBkl8og3tpk7OzqneFoAA_ikz8hdoSB-qWZcF4PyLxX8y21npuvUpmhdgw0dB1CjUQveGSWDD1mHcrs1U7XICzlrf1DHeBzATpKgAX3V4zqs7wuDlGWvzorOEVRuX4KL6l8EbH5yiW_YQ7FKHUb9wN66TUPYPoDVayYIt2AeAvoxR6fAkqLQC_BD42_8KmpbqE4KzFVJDQf5_9yj2KcqgYLz4glGT_5WzNyL8VaqRfuuPptSt-mcwrSgT0AtBs_rIlDF3wol8qV8'
+const token = 'BQCME7Xpe27pYOzQm4bRPWKVU7pi7FMLH8WnArvuMp5So23FeDfLP0Q4zop80vTDY9Fj8yLduwFQk649jH8A-_ClrUziEqUQcE4KiMTALEyRMrl2OJ_c1QnZyuy0wbuX12Je7xsO0XL0MsMrnw9mC1GjaOQWKZ_TZ1ZWI3ZG6-bl5cXDHy53IS22pXeODxX-6QOP0k6zD8-Y1zOft0Bj40slLgKn2oXxHNKssM6anQT6b1jtYAfvVBrb5ow3B2bULRJVBNV5tcShGdI67p3VEL8'
 
 document.addEventListener('DOMContentLoaded', initiate)
 
@@ -26,6 +26,7 @@ function searchSpotify(e) {
     .then(data=> {
         let trackList = data.tracks.items
         let grid = document.querySelector('.search_result_div')
+        let rightGrid = document.querySelector('.playlist_div')
         //resetting ul everytime search is clicked
         grid.innerHTML = `<div class="return_search">
                             <div class="artwork">album artwork</div>
@@ -75,38 +76,156 @@ function searchSpotify(e) {
             //duration
             durationCell.className = "duration"
             durationCell.textContent = trackDuration
+
             searchRow.className = "return_search"
             searchRow.append(artworkCell,titleArtistCell,albumNameCell,durationCell)
-            searchRow.dataset.img = albumImageURL
-            searchRow.dataset.title = trackName
-            searchRow.dataset.artist = artists
-            searchRow.dataset.album = albumName
-            searchRow.dataset.dur = trackDuration
-            searchRow.addEventListener('click', showTrack)
+            // searchRow.dataset.img = albumImageURL
+            // searchRow.dataset.title = trackName
+            // searchRow.dataset.artist = artists
+            // searchRow.dataset.album = albumName
+            // searchRow.dataset.dur = trackDuration
+            searchRow.addEventListener('click', showTrackSearch)
             grid.append(searchRow)
 
             //creating click function for each track
-            function showTrack(e) {
+            function showTrackSearch(e) {
+                document.querySelector('.center').innerHTML = `
+                    <img class="center_img" src="https://files.radio.co/humorous-skink/staging/default-artwork.png">
+                    <h3 class="center_track"></h3>
+                    <h4 class="center_artist">ARTIST NAME</h4>
+                    <h4 class="center_album">ALBUM NAME</h4>
+                    <h5 class="center_duration">DURATION</h5>`
                 let centerImage = document.querySelector('.center_img')
                 let centerTitle = document.querySelector('.center_track')
                 let centerArtist = document.querySelector('.center_artist')
                 let centerAlbum = document.querySelector('.center_album')
                 let centerDuration = document.querySelector('.center_duration')
+                let centerAdd = document.createElement('button')
                 centerImage.src = albumImageURL
                 centerTitle.textContent = trackName
                 centerArtist.textContent = artists
                 centerAlbum.textContent = albumName
                 centerDuration.textContent = trackDuration
+                let trackObj = {
+                    "Title" : `${trackName}`,
+                    "Artist" : `${artists}`,
+                    "Album" : `${albumName}`,
+                    "Duration" : `${trackDuration}`,
+                    "Url" : `${albumImageURL}`
+                }
+                console.log(trackObj)
+                centerAdd.className = "center_add"
+                centerAdd.textContent = "ADD"
+                centerAdd.addEventListener('click', e=>{
+                    e.preventDefault()
+                    fetch('http://localhost:3000/playlist', {
+                        method: "POST",
+                        mode: 'cors',
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(trackObj)
+                    })
+                    .then(res=>res.json())
+                    .then(console.log)
+                    .catch(error=> console.log(error))
+                    renderPlaylist()
+                })
+                document.querySelector('.center').append(centerAdd)
             }
 
 
         }
+    function renderPlaylist() {
+        fetch('http://localhost:3000/playlist')
+        .then(res=> res.json())
+        .then(tracks=> {
+            document.querySelector('.playlist_div').innerHTML = `
+                <div class="right_playlist">
+                <div class="artwork">
+                    <img class="mini-album-cover" src="https://files.radio.co/humorous-skink/staging/default-artwork.png">
+                </div>
+                <div class="contain_name_and_artist">
+                    <div class="track_name">Track Name</div>
+                    <div class="track_artist">Track artist</div>
+                </div>
+                <div class="album_name">Album name</div>
+                <div class="duration">Duration</div>`
+            tracks.forEach(playlistTrack=>{
+                let playlistRow = document.createElement('div')
+                let artworkCell = document.createElement('div')
+                let titleArtistCell = document.createElement('div')
+                let albumNameCell = document.createElement('div')
+                let durationCell = document.createElement('div')
+                //artwork
+                artworkCell.className = "artwork"
+                let img = document.createElement('img')
+                img.className = "mini-album-cover"
+                img.src = playlistTrack.Url
+                artworkCell.appendChild(img)
+                //name and artist
+                titleArtistCell.className = "contain_name_and_artist"
+                let titleCell = document.createElement('div')
+                let artistCell = document.createElement('div')
+                titleCell.className = "track_name"
+                titleCell.textContent = playlistTrack.Title
+                artistCell.className = "track_artist"
+                artistCell.textContent = playlistTrack.Artist
+                titleArtistCell.append(titleCell, artistCell)
+                //album name
+                albumNameCell.className = "album_name"
+                albumNameCell.textContent = playlistTrack.Album
+                //duration
+                durationCell.className = "duration"
+                durationCell.textContent = playlistTrack.Duration
+                playlistRow.id = playlistTrack.id
+                playlistRow.append(artworkCell,titleArtistCell,albumNameCell,durationCell)
+                playlistRow.addEventListener('click', showTrackPlaylist)
+                rightGrid.append(playlistRow)
+
+                // showing playlist in center
+                function showTrackPlaylist(e) {
+                    document.querySelector('.center').innerHTML = `
+                        <img class="center_img" src="https://files.radio.co/humorous-skink/staging/default-artwork.png">
+                        <h3 class="center_track"></h3>
+                        <h4 class="center_artist">ARTIST NAME</h4>
+                        <h4 class="center_album">ALBUM NAME</h4>
+                        <h5 class="center_duration">DURATION</h5>`
+                    let trackID = e.target.id
+                    let centerImage = document.querySelector('.center_img')
+                    let centerTitle = document.querySelector('.center_track')
+                    let centerArtist = document.querySelector('.center_artist')
+                    let centerAlbum = document.querySelector('.center_album')
+                    let centerDuration = document.querySelector('.center_duration')
+                    let centerDel = document.createElement('button')
+                    centerImage.src = playlistTrack.Url
+                    centerTitle.textContent = playlistTrack.Title
+                    centerArtist.textContent = playlistTrack.Artist
+                    centerAlbum.textContent = playlistTrack.Album
+                    centerDuration.textContent = playlistTrack.Duration
+
+                    centerDel.className = "center_Del"
+                    centerDel.textContent = "DEL"
+                    centerDel.addEventListener('click', ()=>{
+                        fetch(`http://localhost:3000/playlist/${playlistTrack.id}`, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type" : "application/json"
+                            }
+                        })
+                        .then(res=> res.json())
+                        .then(data => {
+                            renderPlaylist()
+                        })
+                    })
+                    document.querySelector('.center').append(centerDel)
+                }
+            })
+        })
+    }
         //displays all search results
         trackList.forEach(track => {
             renderSearch(track)
-            
-            
-
             //creating add-to-playlist function for each track
             function addToPlaylist() {
 
