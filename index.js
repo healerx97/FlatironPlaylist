@@ -1,7 +1,7 @@
 // SPOTIFY SEARCH FUNCTIONS
 const client_ID = 'badf019474334b82a55c72dbb75f3739'
 const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
-const token = 'BQCME7Xpe27pYOzQm4bRPWKVU7pi7FMLH8WnArvuMp5So23FeDfLP0Q4zop80vTDY9Fj8yLduwFQk649jH8A-_ClrUziEqUQcE4KiMTALEyRMrl2OJ_c1QnZyuy0wbuX12Je7xsO0XL0MsMrnw9mC1GjaOQWKZ_TZ1ZWI3ZG6-bl5cXDHy53IS22pXeODxX-6QOP0k6zD8-Y1zOft0Bj40slLgKn2oXxHNKssM6anQT6b1jtYAfvVBrb5ow3B2bULRJVBNV5tcShGdI67p3VEL8'
+const token = 'BQBQXoT6dw6wfBJUgdW0s4CUUxSQPdfng3XkdNo_DSixGG0i2xpZ8BesRkSMz6LcqVrnQbYlsIyHRcaVdLhm4Dtb7xEZRwsAAzFzkUW4bMRs62EEgKrIPVwLnnThMPjJIQLsdiSeUpducH9Nhv0nTWy7ylACVlVG9zUB_vwgscOtedRRb1d3UMhD-bVGfmR09JWk5dvEeTXhyGTIPfUC8TNa-QTYb2943YqXmCiTMQ9fg92ZsA4mWZpSvN43rXQhCeHh9Bfdpn3HvFrr4Hhcke8'
 
 document.addEventListener('DOMContentLoaded', initiate)
 
@@ -113,7 +113,6 @@ function searchSpotify(e) {
                     "Duration" : `${trackDuration}`,
                     "Url" : `${albumImageURL}`
                 }
-                console.log(trackObj)
                 centerAdd.className = "center_add"
                 centerAdd.textContent = "ADD"
                 centerAdd.addEventListener('click', e=>{
@@ -127,9 +126,11 @@ function searchSpotify(e) {
                         body: JSON.stringify(trackObj)
                     })
                     .then(res=>res.json())
-                    .then(console.log)
+                    .then(data=> {
+                        renderPlaylist()
+                    })
                     .catch(error=> console.log(error))
-                    renderPlaylist()
+                    
                 })
                 document.querySelector('.center').append(centerAdd)
             }
