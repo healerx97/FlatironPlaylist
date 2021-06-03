@@ -1,9 +1,23 @@
+body{
+    background-color: dimgray;
+    font-family: -webkit-pictograph;
+}
 .search_bar {
     margin:auto;
     width: 50%;
     border-style: solid;
     border-color:purple;
 
+}
+#search_input{
+    background-color: #ffffff59;
+    border-radius: 5px;
+    border-style: double;
+}
+.search_btn{
+    background-color: darkgray;
+    border-radius: 6px;
+    border-style: double;
 }
 form{
     margin: auto;
@@ -15,6 +29,7 @@ form{
     padding: 4px;
     border-style: solid;
     border-color: rgb(17, 223, 27);
+    margin: auto;
 }
 .search_result_div {
     float: left;
@@ -23,10 +38,11 @@ form{
     border-color: yellow;
 }
 .playlist_div {
-    float: right;
+    float: left;
     width: 25%;
     border-style: solid;
     border-color: red;
+    background-color: darkgray;
 }
 .preview_song{
     border-style: solid;
@@ -34,7 +50,10 @@ form{
 }
 
 .return_search{
-    display:grid
+    display:grid;
+    grid-template-columns: 50px 155px 125px 60px;
+    background-color: darkgray;
+    width: 400px;
 }
 
 .right_playlist{
@@ -42,22 +61,35 @@ form{
 }
 .artwork{
     grid-column-start: 1;
+    width: 50px;
+    height: 50px;
 }
 .contain_name_and_artist{
     border-style: dashed;
     grid-column-start: 2;
     grid-column-end: 3;
     overflow: hidden;
+    height: 50px;
+    width: 150px;
 }
 .album_name{
-    text-align: left;
+    font-size: 14px;
     grid-column-start: 3;
     white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    padding-right: 3px;
+    padding-left: 8px ;
+    margin: auto;
+    height: 50px;
+    width: 120px;
 }
 .duration{
     grid-column-start: 4;
+    margin: auto;
+    padding-right: 3px;
+    height: 50px;
+    width: 80px;
 }
 .track_name{
     text-align: left;
@@ -65,6 +97,9 @@ form{
     white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    padding-right: 3px;
+    padding-left: 4px;
+
 }
 .track_artist{
     text-align: left;
@@ -72,18 +107,50 @@ form{
     white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-.delete_from_playlist{
-    grid-column-start: 6;
-    padding: 2px;
+    padding-right: 3px;
+    padding-left: 4px;
 }
 .mini-album-cover {
     height: 50px;
     width: 50px;
 }
+.center_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
 .center_add{
     float: left;
+    margin-left: 10px;
+    background-color: rgb(57, 175, 106);
+    border-style: none;
+    border-radius: 5px;
+    padding: 2px;
+    height: 40px;
+    font-family: -webkit-pictograph;
+
 }
 .center_del{
     float: right;
+    margin-right: 10px;
+    background-color: rgb(236, 86, 86);
+    border-style: none;
+    border-radius: 5px;
+    padding: 2px;
+    height: 40px;
+    font-family: -webkit-pictograph;
+
+}
+.center_track{
+    text-align: center;
+}
+.center_artist{
+    text-align: center;
+}
+.center_album{
+    text-align: center;
+}
+.center_duration{
+    text-align: center;
 }
