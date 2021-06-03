@@ -47,7 +47,7 @@ function searchSpotify(e) {
             })
             let albumName = resultTrack.album.name
             let albumImageURL = resultTrack.album.images[0].url
-            let trackDuration = resultTrack['duration_ms']
+            let trackDuration = msToHMS(resultTrack['duration_ms'])
 
             let searchRow = document.createElement('div')
             let artworkCell = document.createElement('div')
@@ -245,6 +245,19 @@ function searchSpotify(e) {
     //things we need: Artist(s), AlbumName, AlbumImageURL, TrackName, Track Duration
 }
 
+
+
+function msToHMS(ms) {
+    let s = Math.floor(ms/1000)%60
+    s = s.toString()
+    let m = Math.floor(ms/(1000*60))%60
+    m = m.toString()
+    if (s.length == 1) {
+        return m + ":0" + s
+    } else {
+        return m + ":" + s
+    }
+}
 //Figure Out HTML
 
 // 1. Search Bar: Hidden 'li' that are css styled to display search results
@@ -255,4 +268,3 @@ function searchSpotify(e) {
 //   -- playlist (rendering data from db.json)
 // 5. In the Middle
 //   -- click on a search result => display in more detail
-
