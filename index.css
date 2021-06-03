@@ -36,7 +36,6 @@ form{
     width: 25%;
     border-style: solid;
     border-color: yellow;
-    background-color: darkgray;
 }
 .playlist_div {
     float: left;
@@ -51,7 +50,10 @@ form{
 }
 
 .return_search{
-    display:grid
+    display:grid;
+    grid-template-columns: 50px 155px 125px 60px;
+    background-color: darkgray;
+    width: 400px;
 }
 
 .right_playlist{
@@ -59,26 +61,35 @@ form{
 }
 .artwork{
     grid-column-start: 1;
+    width: 50px;
+    height: 50px;
 }
 .contain_name_and_artist{
     border-style: dashed;
     grid-column-start: 2;
     grid-column-end: 3;
     overflow: hidden;
+    height: 50px;
+    width: 150px;
 }
 .album_name{
-    text-align: left;
+    font-size: 14px;
     grid-column-start: 3;
     white-space:nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     padding-right: 3px;
+    padding-left: 8px ;
     margin: auto;
+    height: 50px;
+    width: 120px;
 }
 .duration{
     grid-column-start: 4;
     margin: auto;
     padding-right: 3px;
+    height: 50px;
+    width: 80px;
 }
 .track_name{
     text-align: left;
@@ -87,6 +98,7 @@ form{
     text-overflow: ellipsis;
     overflow: hidden;
     padding-right: 3px;
+    padding-left: 4px;
 
 }
 .track_artist{
@@ -96,6 +108,7 @@ form{
     text-overflow: ellipsis;
     overflow: hidden;
     padding-right: 3px;
+    padding-left: 4px;
 }
 .mini-album-cover {
     height: 50px;
