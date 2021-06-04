@@ -29,20 +29,21 @@ body{
 form{
     margin: auto;
 }
+.main{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
 .center {
-    float:left;
-    width: 45%;
+    width: 100%;
     padding: 4px;
     margin: auto;
 }
 .search_result_div {
-    float: left;
-    width: 25%;
+    width: 100%;
     overflow: hidden;
 }
 .playlist_div {
-    float: left;
-    width: 25%;
+    width: 100%;
     background-color: darkgray;
 }
 
