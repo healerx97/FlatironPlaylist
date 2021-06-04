@@ -33,27 +33,17 @@ form{
     float:left;
     width: 45%;
     padding: 4px;
-    border-style: solid;
-    border-color: rgb(17, 223, 27);
     margin: auto;
 }
 .search_result_div {
     float: left;
     width: 25%;
-    border-style: solid;
-    border-color: yellow;
     overflow: hidden;
 }
 .playlist_div {
     float: left;
     width: 25%;
-    border-style: solid;
-    border-color: red;
     background-color: darkgray;
-}
-.preview_song{
-    border-style: solid;
-    border-color: pink;
 }
 
 .return_search{
