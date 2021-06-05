@@ -1,7 +1,7 @@
 // SPOTIFY SEARCH FUNCTIONS
 const client_ID = 'badf019474334b82a55c72dbb75f3739'
 const client_secret = '9dc25589bf2f4c9e9d2e30edbc9b1556'
-const token = 'BQAV_nEAdJ_E4b8QcA8Wu03HW1JmTmL_TbTp_jXuQMKskF2gEj9BK2MUmnjK4Bl0eQG-HgRSroRZ-qwkcG2Hr_xLL2qnSWT5LKhpxQr-8bYxqst7vVLk3maQhXYcB_UK_O4KqFkB8Ksf52UZWV_kQfcLfXD2E3f7zsQzyH-y31UvdMtaFknqOTxDcbkIQspcMbbQ75S7o1V7srDksb3uUH3vA0d6FtaEFhcByJrv0qfiKHYnpgcYFk8RbT-9MuvhatZqEHY8t7UKYH-kPjIKyQA'
+const token = 'BQAIo4vg_bIH2xcOEu5oxWP5ikXI-aQEPxJxqR_8waT3EzVsBQj1NU_JCZxCwfkcMSJvqHosKGaH8nYQru22GC1-IQ5aSkaxWaUhdvGkznFd9JOVlAp4ZBF5MiD8o2PBe3HCCEzvnZoRkREBwRE3qiLtZl7ebLlmmOOb4d_F5dNUT4reAemJNKNxTzlvYfa-jT2N0qYrV6xqjs_IVbtkqojeDwZv_de_aMzPUxE8s7V3OW5-2mdwTXoREz8h4fBPeHTSvGnkQHpHxSilyzVqwAw'
 
 document.addEventListener('DOMContentLoaded', initiate)
 
@@ -234,7 +234,6 @@ function searchSpotify(e) {
     //add button on every track so that it sends the data to db.json when clicked
     //things we need: Artist(s), AlbumName, AlbumImageURL, TrackName, Track Duration
 }
-
 
 
 function msToHMS(ms) {
